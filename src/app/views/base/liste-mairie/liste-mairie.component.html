@@ -1,0 +1,303 @@
+<div class="col-sm-12" *ngIf="listeMairie">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-default">
+        <i class="fa fa-align-justify"></i> Liste des Mairie
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <thead>
+            <tr class="bg-default">
+              <th>N ° : </th>
+              <th>Libelle Mairie </th>
+              <th>Libelle Quartier</th>
+              <th>Type Mairie</th>
+              <th>Commune</th>
+              <!-- <th></th>
+              <th></th> -->
+            </tr>
+          </thead>
+          <tbody *ngFor="let mairie of listeMairie | paginate: { itemsPerPage: 6, currentPage: p } ">
+            <tr>
+              <td><button class="btn btn-secondary bg-default"> <a (click)="onListeMarcher(mairie)" class="">Marcher N° :
+                    {{mairie.idMairie}} </a> </button></td>
+              <td>{{mairie.libelleMairie}}</td>
+              <td>{{mairie.quartierMairie}}</td>
+              <td>{{mairie.typeMairie}}</td>
+              <td>{{mairie.commune.libelleCommune}}</td>
+              <!-- <td>
+               
+                  <a (click)="onUpdateMairie(listemairie)">
+                    <i class="fa fa-edit"></i>
+                  </a>
+              </td>
+              <td>
+                  <a (click)="onDeleteMairie(listemairie)">
+                    <i class="fa fa-trash-o fa-lg"></i> 
+                  </a>
+              </td> -->
+            </tr>
+
+          </tbody>
+        </table>
+        <br>
+        <nav>
+          <ul class="pagination">
+
+            <li class="page-item"><a class="page-link">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </a></li>
+
+          </ul>
+
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ==============================================================================  la liste des marchers par mairie =========================================================== -->
+<div class="col-sm-12" *ngIf="listeMarcherByMairie">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-default">
+        <i class="fa fa-align-justify"></i> Liste des Marchers
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <thead>
+            <tr class="bg-default">
+              <th>Marcher N°</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let listemarcherbymairie of listeMarcherByMairie | paginate: { itemsPerPage: 6, currentPage: p } ">
+            <tr>
+              <td>{{listemarcherbymairie.libelleMarcher}}</td>
+              <td><button class="btn btn-secondary bg-default">
+                  <a (click)="onListePlaceUtilisateur(listemarcherbymairie)">
+                    Affecter Place Utilisateur</a></button></td>
+
+              <td><button class="btn btn-secondary bg-default"> <a
+                    (click)="onListePlaceMarchand(listemarcherbymairie)">Affecter
+                    Place Marchand</a> </button></td>
+
+            </tr>
+
+          </tbody>
+        </table>
+        <br>
+        <nav>
+          <ul class="pagination">
+
+            <li class="page-item"><a class="page-link">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </a></li>
+
+          </ul>
+
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================================================================  la liste des places disponible pour un marcher =========================================================== -->
+<div class="col-sm-12" *ngIf="listePlaceByMarchand">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-default">
+        <i class="fa fa-align-justify"></i> Liste des Places disponible
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <thead>
+            <tr class="bg-default">
+              <th>Place N°</th>
+              <th>Libelle Place</th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let listeplacebymarchand of listePlaceByMarchand | paginate: { itemsPerPage: 6, currentPage: p } ">
+
+            <tr *ngIf="!listeplacebymarchand.selectedMarchand">
+              <td><button class="btn btn-secondary bg-default">
+                  <a>Place : {{listeplacebymarchand.idPlace}}</a></button></td>
+              <td>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="{{listeplacebymarchand.idPlace}}"
+                    [value]="listeplacebymarchand.idPlace"
+                    (change)="getIdPlaceSelectionner($event, listeplacebymarchand.idPlace)">
+                  <label class="form-check-label btn btn-secondary" style="margin-left: 20px;">
+                    {{listeplacebymarchand.numeroPlace}}
+                  </label>
+                </div>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+        <br>
+        <nav>
+          <ul class="pagination">
+
+            <li class="page-item"><a class="page-link">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </a></li>
+
+              <div class="pull-right" style="margin-left: 14cm;">
+                <button type="button" class="btn btn-secondary bg-default" (click)="onListeMarchandByMarcher()" data-toggle="modal"
+                  (click)="primaryModal.show()">
+                  Choisir Un Marchand
+                </button>
+              </div>
+          </ul>
+
+        </nav>
+      </div>
+
+  
+
+      <div bsModal #primaryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-secondary" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Marchand</h4>
+              <button type="button" class="close" (click)="primaryModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #f="ngForm" (ngSubmit)="onAddPlaceToMachand(f.value)">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label btn btn-secondary col-sm-12">Veuillez Choisir un
+                    Marchand:</label>
+                  <br><br>
+                  <select name="marchand" class="form-control" id="recipient-name" ngModel>
+                    <option *ngFor="let listeMarchandBymarcher of listeMarchandByMarcher"
+                      value="{{listeMarchandBymarcher.idMarchand}}">
+                      {{listeMarchandBymarcher.nomMarchand}} {{listeMarchandBymarcher.prenomMarchand}}
+                      {{listeMarchandBymarcher.marcher.libelleMarcher}}
+                    </option>
+
+                  </select>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger col-sm-4" data-dismiss="modal">Fermer</button>
+                  <button type="submit" class="btn btn-secondary col-sm-6">Affecter</button>
+                </div>
+              </form>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================================================================== Affecter place Utilisateur ===================================================================== -->
+<div class="col-sm-12" *ngIf="listePlaceByMarcher">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-default">
+        <i class="fa fa-align-justify"></i> Liste des Places disponible
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <thead>
+            <tr class="bg-default">
+              <th>Place N°</th>
+              <th>Libelle Place</th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let listeplacebymarcher of listePlaceByMarcher | paginate: { itemsPerPage: 6, currentPage: p } ">
+            <tr *ngIf="!listeplacebymarcher.selectedUtilisateur">
+              <td><button class="btn btn-secondary">
+                  <a class="">Place : {{listeplacebymarcher.idPlace}}</a></button></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [value]="listeplacebymarcher.idPlace"
+                    name="{{listeplacebymarcher.idPlace}}"
+                    (change)="getIdPlaceSelectionner($event, listeplacebymarcher.idPlace)">
+
+                  <label class="form-check-label btn btn-secondary" style="margin-left: 20px;">
+                    {{listeplacebymarcher.numeroPlace}}
+                  </label>
+                </div>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+        <br>
+        <nav>
+          <ul class="pagination">
+
+            <li class="page-item"><a class="page-link">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </a></li>
+
+            <div class="pull-right" style="margin-left: 14cm;">
+              <button type="button" class="btn btn-secondary bg-default" (click)="onListeUtilisateur()" data-toggle="modal"
+                (click)="primaryModal.show()">
+                Choisir Utilisateur
+              </button>
+            </div>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div bsModal #primaryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Recouvreur</h4>
+          <button type="button" class="close" (click)="primaryModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #f="ngForm" (ngSubmit)="onAddPlaceToUtilisataur(f.value)">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label btn btn-secondary col-sm-12">Veuillez Choisir un
+                Recouvreur:</label>
+              <br><br>
+              <select name="utilisateur" class="form-control" id="recipient-name" ngModel>
+                <option *ngFor="let listeutilisateurbymairie of listeUtilisateurByMarcher"
+                  value="{{listeutilisateurbymairie.idUtilisateur}}">
+                  {{listeutilisateurbymairie.codeUtilisateur}} {{listeutilisateurbymairie.nomUtilisateur}}
+                  {{listeutilisateurbymairie.prenomUtilisateur}}
+                </option>
+
+              </select>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="primaryModal.hide()">Fermer</button>
+              <button type="submit" class="btn btn-secondary col-sm-6">Affecter</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+</div>

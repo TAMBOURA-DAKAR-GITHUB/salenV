@@ -1,0 +1,68 @@
+<div class="col-sm-4" *ngIf="cerclecourant">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        Modifier un Cercle
+        </div>
+        <div class="card-body">
+          <form #form1="ngForm" (ngSubmit)="OnmodifierCercle(form1.value)">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-success">Libelle Cercle</span>
+                </div>
+                <input type="text" id="username3"
+                 name="libelleCercle" 
+                 class="form-control" 
+                 ngModel
+                 required #libelleCercle="ngModel" 
+                 [class.is-invalid]="libelleCercle.invalid && libelleCercle.touched" [(ngModel)]="cerclecourant.libelleCercle">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+              </div>
+              <div *ngIf="libelleCercle.errors && (libelleCercle.invalid && libelleCercle.touched)">
+                <span class="text-danger pull-center" *ngIf="libelleCercle.errors.required">Veuillez saisir un cercle</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Region</span>
+                </div>
+                <select id="disabledSelect" class="form-control" 
+                ngModel name="region"
+                required #region="ngModel" [(ngModel)]="cerclecourant.region.idRegion">
+                  <option *ngFor="let region of listeRegion" value="{{region.idRegion}}"> {{region.libelleRegion}}</option>
+                  
+                </select>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+              </div>
+              <div *ngIf="region.errors && (region.invalid && region.touched)">
+                <span class="text-danger pull-center" *ngIf="region.errors.required">Veuillez selectionner !!!</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Longitude</span>
+                </div>
+                <input type="password" id="password3" name="password3" class="form-control"
+                  autocomplete="current-password" disabled>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <br><br><br>
+            <div class="form-group form-actions">
+              <button [disabled]="form1.form.invalid" type="submit" class="btn btn-success col-sm-4 pull-right">Modifier</button>
+            </div>
+            <br><br><br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

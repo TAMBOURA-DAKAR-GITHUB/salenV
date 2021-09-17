@@ -1,0 +1,67 @@
+<div class="col-sm-4" *ngIf="communecourant">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        Modifier un Commune
+        </div>
+        <div class="card-body">
+            <form #formcommune="ngForm" (ngSubmit)="OnmodifierCommune(formcommune.value)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-success">Libelle Commune</span>
+                    </div>
+                    <input type="text" id="username3" 
+                    name="libelleCommune" 
+                    class="form-control"
+                    ngModel
+                    required #libelleCommune="ngModel" 
+                    [class.is-invalid]="libelleCommune.invalid && libelleCommune.touched" [(ngModel)]="communecourant.libelleCommune">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="libelleCommune.errors && (libelleCommune.invalid && libelleCommune.touched)">
+                    <span class="text-danger pull-center" *ngIf="libelleCommune.errors.required">Saisir le nom commune</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Cercle</span>
+                    </div>
+                    {{cercle.libelleCercle}}
+                    <select id="disabledSelect" class="form-control" 
+                    ngModel name="cercle"
+                    required #cercle="ngModel"  [(ngModel)]="communecourant.cercle.idCercle">
+                      <option *ngFor="let cercle of listeCercle" value="{{cercle.idCercle}}"> {{cercle.libelleCercle}}</option>
+                      
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="cercle.errors && (cercle.invalid && cercle.touched)">
+                    <span class="text-danger pull-center" *ngIf="cercle.errors.required">  Veuillez selectionner !!!</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Password</span>
+                    </div>
+                    <input type="password" id="password3" name="password3" class="form-control"
+                      autocomplete="current-password" disabled>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group form-actions">
+                  <button [disabled]="formcommune.form.invalid" type="submit" class="btn btn-success col-sm-4 pull-right">Modifier</button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

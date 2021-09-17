@@ -1,0 +1,779 @@
+<div class="animated fadeIn">
+
+  <!---------------------------------------------------------- region ---------------------------------------------------------------->
+  <div class="card">
+    <div class="btn btn-default">
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedregion">
+      <div class="row">
+        <div class="col-sm-4">
+
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                Region
+              </div>
+              <div class="card-body">
+                <form #f="ngForm" (ngSubmit)="onAddRegion(f.value)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Libelle Region</span>
+                      </div>
+                      <input type="text" id="username3" name="libelleRegion" class="form-control" ngModel required
+                        #libelleRegion="ngModel" [class.is-invalid]="libelleRegion.invalid && libelleRegion.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="libelleRegion.errors && (libelleRegion.invalid && libelleRegion.touched)">
+                      <span class="text-danger pull-center" *ngIf="libelleRegion.errors.required">Veuillez saisir une
+                        region</span>
+                    </div>
+                    <!-- <div *ngIf="libelleRegion.errors.minlength">
+                      <span class="text-danger pull-center" >Minimum 4 caracteres </span>
+                    </div>  -->
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Altitude</span>
+                      </div>
+                      <input type="email" id="email3" name="email3" class="form-control" autocomplete="email" disabled>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Longitude</span>
+                      </div>
+                      <input type="password" id="password3" name="password3" class="form-control"
+                        autocomplete="current-password" disabled>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <br><br><br>
+                  <div class="form-group form-actions">
+                    <button [disabled]="f.form.invalid" type="submit"
+                      class="btn btn-secondary c text-dark bg-default col-sm-4 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                  </div>
+                  <br><br><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listeRegion">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                <i class="fa fa-align-justify"></i> Liste des Regions
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Libelle Region </th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listeregion of listeRegion | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{listeregion.idRegion}}</td>
+                      <td>{{listeregion.libelleRegion}}</td>
+                      <td>
+
+                        <a (click)="onUpdate(listeregion)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDelete(listeregion)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+
+                    <!-- <tr>
+                      <td>Vishnu Serghei</td>
+                      <td>2012/01/01</td>
+                      <td>Member</td>
+                      <td>
+                        <span class="badge badge-success">Active</span>
+                      </td>
+                    </tr> -->
+
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary  btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedregion = !isCollapsedregion">
+        Gestion Region
+      </button>
+    </div>
+  </div>
+
+  <!---------------------------------------------------------- cercle ---------------------------------------------------------------->
+  <div class="card">
+    <div class="btn btn-default">
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedcercle">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                Cercle
+              </div>
+              <div class="card-body">
+                <form #form1="ngForm" (ngSubmit)="onAddCercle(form1.value)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text  text-dark bg-default">Libelle Cercle</span>
+                      </div>
+                      <input type="text" id="username3" name="libelleCercle" class="form-control" ngModel required
+                        #libelleCercle="ngModel" [class.is-invalid]="libelleCercle.invalid && libelleCercle.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="libelleCercle.errors && (libelleCercle.invalid && libelleCercle.touched)">
+                      <span class="text-danger pull-center" *ngIf="libelleCercle.errors.required">Veuillez saisir un
+                        cercle</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Region</span>
+                      </div>
+                      <select id="disabledSelect" class="form-control" ngModel name="region" required #region="ngModel">
+                        <option *ngFor="let region of listeRegion" value="{{region.idRegion}}"> {{region.libelleRegion}}
+                        </option>
+
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="region.errors && (region.invalid && region.touched)">
+                      <span class="text-danger pull-center" *ngIf="region.errors.required">Veuillez selectionner
+                        !!!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Longitude</span>
+                      </div>
+                      <input type="password" id="password3" name="password3" class="form-control"
+                        autocomplete="current-password" disabled>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <br><br><br>
+                  <div class="form-group form-actions">
+                    <button [disabled]="form1.form.invalid" type="submit"
+                      class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                  </div>
+                  <br><br><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listeCercle">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                <i class="fa fa-align-justify"></i>Liste des Cercles
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Libelle Cercle </th>
+                      <th>Libelle Region</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listecercle of listeCercle | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{listecercle.idCercle}}</td>
+                      <td>{{listecercle.libelleCercle}}</td>
+                      <td>{{listecercle.region.libelleRegion}}</td>
+                      <td>
+
+                        <a (click)="onUpdateCercle(listecercle)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDeleteCercle(listecercle)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <ul class="pagination">
+
+                    <li class="page-item"><a class="page-link">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </a></li>
+
+                  </ul>
+
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedcercle = !isCollapsedcercle">
+        Gestion Cercle
+      </button>
+    </div>
+  </div>
+  <!---------------------------------------------------------- commune ---------------------------------------------------------------->
+  <div class="card">
+    <div class="btn btn-default">
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)"
+      [collapse]="isCollapsedcommune">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                Commune
+              </div>
+              <div class="card-body">
+                <form #formcommune="ngForm" (ngSubmit)="onAddCommune(formcommune.value)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text  text-dark bg-default">Libelle Commune</span>
+                      </div>
+                      <input type="text" id="username3" name="libelleCommune" class="form-control" ngModel required
+                        #libelleCommune="ngModel" [class.is-invalid]="libelleCommune.invalid && libelleCommune.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="libelleCommune.errors && (libelleCommune.invalid && libelleCommune.touched)">
+                      <span class="text-danger pull-center" *ngIf="libelleCommune.errors.required">Saisir le nom
+                        commune</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Cercle</span>
+                      </div>
+
+                      <select id="disabledSelect" class="form-control" ngModel name="cercle" required #cercle="ngModel">
+                        <option *ngFor="let cercle of listeCercle" value="{{cercle.idCercle}}"> {{cercle.libelleCercle}}
+                        </option>
+
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="cercle.errors && (cercle.invalid && cercle.touched)">
+                      <span class="text-danger pull-center" *ngIf="cercle.errors.required"> Veuillez selectionner
+                        !!!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default"></span>
+                      </div>
+                      <input type="password" id="password3" name="password3" class="form-control"
+                        autocomplete="current-password" disabled>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group form-actions">
+                    <button [disabled]="formcommune.form.invalid" type="submit"
+                      class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listeCommune">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                <i class="fa fa-align-justify"></i> Liste des Communes
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Libelle Commune </th>
+                      <th>Libelle Cercle</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listecommune of listeCommune | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{listecommune.idCommune}}</td>
+                      <td>{{listecommune.libelleCommune}}</td>
+                      <td>{{listecommune.cercle.libelleCercle}}</td>
+                      <td>
+
+                        <a (click)="onUpdateCommune(listecommune)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDeleteCommune(listecommune)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <ul class="pagination">
+
+                    <li class="page-item"><a class="page-link">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </a></li>
+
+                  </ul>
+
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedcommune = !isCollapsedcommune">
+        Gestion Commune
+      </button>
+    </div>
+  </div>
+  <!---------------------------------------------------------- mairie ---------------------------------------------------------------->
+  <div class="card">
+    <div class="btn btn-default">
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedmairie">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                Mairie
+              </div>
+              <div class="card-body">
+                <form #formmairie="ngForm" (ngSubmit)="onAddMairie(formmairie.value)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text  text-dark bg-default">Libelle Mairie</span>
+                      </div>
+                      <input type="text" id="username3" name="libelleMairie" class="form-control" ngModel required
+                        #libelleMairie="ngModel" [class.is-invalid]="libelleMairie.invalid && libelleMairie.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="libelleMairie.errors && (libelleMairie.invalid && libelleMairie.touched)">
+                      <span class="text-danger pull-center" *ngIf="libelleMairie.errors.required">Saisir le nom de la
+                        mairie</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text  text-dark bg-default">Quartier</span>
+                      </div>
+                      <input type="text" id="username3" name="quartierMairie" class="form-control" ngModel required
+                        #quartierMairie="ngModel" [class.is-invalid]="quartierMairie.invalid && quartierMairie.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="quartierMairie.errors && (quartierMairie.invalid && quartierMairie.touched)">
+                      <span class="text-danger pull-center" *ngIf="quartierMairie.errors.required">Saisir le nom du
+                        Quartier</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Type Mairie</span>
+                      </div>
+                      <select id="disabledSelect" class="form-control" name="typeMairie" ngModel required
+                        #typeMairie="ngModel" [class.is-invalid]="typeMairie.invalid && typeMairie.touched">
+                        <option selected="selected">Principale</option>
+                        <option>Secondaire</option>
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="typeMairie.errors && (typeMairie.invalid && typeMairie.touched)">
+                      <span class="text-danger pull-center" *ngIf="typeMairie.errors.required"> Veuillez selectionner
+                        !!!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Commune</span>
+                      </div>
+                      <select id="disabledSelect" class="form-control" ngModel name="commune" required
+                        #commune="ngModel">
+                        <option *ngFor="let listecommune of listeCommune" value="{{listecommune.idCommune}}">
+                          {{listecommune.libelleCommune}}</option>
+
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="commune.errors && (commune.invalid && commune.touched)">
+                      <span class="text-danger pull-center" *ngIf="commune.errors.required">Veuillez selectionner une
+                        commune !!!</span>
+                    </div>
+                  </div>
+                  <br><br>
+                  <div class="form-group form-actions">
+                    <button type="submit" [disabled]="formmairie.form.invalid"
+                      class="btn btn-secondary c text-dark col-sm-2 bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong> </button>
+                  </div>
+                  <br><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listeMairie">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <i class="fa fa-align-justify text-dark bg-default"></i> Liste des Mairie
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Libelle Mairie </th>
+                      <th>Libelle Quartier</th>
+                      <th>Type Mairie</th>
+                      <th>Commune</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listemairie of listeMairie | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{listemairie.idMairie}}</td>
+                      <td>{{listemairie.libelleMairie}}</td>
+                      <td>{{listemairie.quartierMairie}}</td>
+                      <td>{{listemairie.typeMairie}}</td>
+                      <td>{{listemairie.commune.libelleCommune}}</td>
+                      <td>
+
+                        <a (click)="onUpdateMairie(listemairie)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDeleteMairie(listemairie)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <ul class="pagination">
+
+                    <li class="page-item"><a class="page-link">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </a></li>
+
+                  </ul>
+
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedmairie = !isCollapsedmairie">
+        Gestion Mairie
+      </button>
+    </div>
+  </div>
+  <!-------------------------------------------------------------------------------------- utilisateur --------------------------------------------------------------->
+  <div class="card">
+    <div class="btn btn-default">
+
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-header text-dark bg-default">
+              <strong>Recouvreur</strong>
+            </div>
+            <div class="card-body">
+              <form #formutilisateur="ngForm" (ngSubmit)="onAddUtilisateur(formutilisateur.value)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text  text-dark bg-default">Nom </span>
+                    </div>
+                    <input type="text" id="username3" name="nomUtilisateur" class="form-control" ngModel required
+                      #nomUtilisateur="ngModel" [class.is-invalid]="nomUtilisateur.invalid && nomUtilisateur.touched">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="nomUtilisateur.errors && (nomUtilisateur.invalid && nomUtilisateur.touched)">
+                    <span class="text-danger pull-center" *ngIf="nomUtilisateur.errors.required">Saisir le nom </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Prenom </span>
+                    </div>
+                    <input type="email" id="email3" name="prenomUtilisateur" class="form-control"
+                      autocomplete="prenomUtilisateur" class="form-control" ngModel required
+                      #prenomUtilisateur="ngModel"
+                      [class.is-invalid]="prenomUtilisateur.invalid && prenomUtilisateur.touched">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="prenomUtilisateur.errors && (prenomUtilisateur.invalid && prenomUtilisateur.touched)">
+                    <span class="text-danger pull-center" *ngIf="prenomUtilisateur.errors.required">Saisir le
+                      prenom</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Adresse </span>
+                    </div>
+                    <input type="text" id="password3" name="adresseUtilisateur" class="form-control"
+                      autocomplete="adresseUtilisateur" class="form-control" ngModel required
+                      #adresseUtilisateur="ngModel"
+                      [class.is-invalid]="adresseUtilisateur.invalid && adresseUtilisateur.touched">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="adresseUtilisateur.errors && (adresseUtilisateur.invalid && adresseUtilisateur.touched)">
+                    <span class="text-danger pull-center" *ngIf="adresseUtilisateur.errors.required">Saisir
+                      l'adresse</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Telephone </span>
+                    </div>
+                    <input type="number" id="password3" name="telephoneUtilisateur" class="form-control" ngModel
+                      required #telephoneUtilisateur="ngModel"
+                      [class.is-invalid]="telephoneUtilisateur.invalid && telephoneUtilisateur.touched">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="telephoneUtilisateur.errors && (telephoneUtilisateur.invalid && telephoneUtilisateur.touched)">
+                    <span class="text-danger pull-center" *ngIf="telephoneUtilisateur.errors.required">Saisir le numero
+                      de telephone </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Email </span>
+                    </div>
+                    <input type="text" id="password3" name="emailUtilisateur" class="form-control"
+                      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ngModel required
+                      #emailUtilisateur="ngModel"
+                      [class.is-invalid]="emailUtilisateur.invalid && emailUtilisateur.touched">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="emailUtilisateur.errors && (emailUtilisateur.invalid && emailUtilisateur.touched)">
+                    <span class="text-danger" *ngIf="emailUtilisateur.errors.required">Veuillez saisir un mail</span>
+                    <span class="text-danger" *ngIf="emailUtilisateur.errors.pattern"> Veuillez saisir un mail valide
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Mairie </span>
+                    </div>
+                    <select id="disabledSelect" class="form-control" ngModel name="mairie" required #mairie="ngModel">
+                      <option *ngFor="let listemairie of listeMairie" value="{{listemairie.idMairie}}">
+                        {{listemairie.libelleMairie}}</option>
+
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="mairie.errors && (mairie.invalid && mairie.touched)">
+                    <span class="text-danger pull-center" *ngIf="mairie.errors.required">Veuillez selectionner une
+                      mairie !!!</span>
+                  </div>
+                </div>
+                <div class="form-group form-actions">
+                  <button type="submit" [disabled]="formutilisateur.form.invalid"
+                    class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right"> <strong><strong>Enregistrer</strong></strong> </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listeUtilisateur">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                <i class="fa fa-align-justify"></i> Liste des Recouvreurs
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Nom </th>
+                      <th>Prenom </th>
+                      <th>Adresse </th>
+                      <th>Telephone </th>
+                      <th>E-mail </th>
+                      <th>Mairie </th>
+                      <th>Commune </th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let utilisateur of listeUtilisateur | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{utilisateur.nomUtilisateur}}</td>
+                      <td>{{utilisateur.prenomUtilisateur}}</td>
+                      <td>{{utilisateur.adresseUtilisateur}}</td>
+                      <td>{{utilisateur.codeUtilisateur}}</td>
+                      <td>{{utilisateur.telephoneUtilisateur}}</td>
+                      <td>{{utilisateur.emailUtilisateur}}</td>
+                      <td>{{utilisateur.mairie.libelleMairie}}</td>
+                      <td>{{utilisateur.mairie.commune.libelleCommune}}</td>
+                      <td>
+                        <a (click)="onUpdateUtilisateur(utilisateur)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDeleteUtilisateur(utilisateur)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <ul class="pagination">
+
+                    <li class="page-item"><a class="page-link">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </a></li>
+
+                  </ul>
+
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+       class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsed = !isCollapsed">Gestion Recouvreur
+      </button>
+    </div>
+  </div>
+</div>

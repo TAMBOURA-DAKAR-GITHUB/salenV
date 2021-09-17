@@ -1,0 +1,67 @@
+
+
+
+<div class="col-sm-4" *ngIf="regioncourant">
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          Region
+        </div>
+        <div class="card-body">
+          <div class="alert alert-danger " *ngIf="erreur==1">
+            <span>
+                <strong class="text-danger">Le mot de passe est  incorrect </strong>
+            </span>
+        </div>
+          <form #f="ngForm" (ngSubmit)="OnmodifierRegion(f.value)">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-success">Libelle Region</span>
+                </div>
+                <input type="text" id="username3" name="libelleRegion" 
+                [(ngModel)]="regioncourant.libelleRegion" 
+                class="form-control" ngModel
+                ngModel
+                required #libelleRegion="ngModel" 
+                [class.is-invalid]="libelleRegion.invalid && libelleRegion.touched">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+              </div>
+              <div *ngIf="libelleRegion.errors && (libelleRegion.invalid && libelleRegion.touched)">
+                <span class="text-danger pull-center" *ngIf="libelleRegion.errors.required">Veuillez saisir une region</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Altitude</span>
+                </div>
+                <input type="email" id="email3" name="email3" class="form-control" autocomplete="email" disabled>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Longitude</span>
+                </div>
+                <input type="password" id="password3" name="password3" class="form-control"
+                  autocomplete="current-password" disabled>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-actions">
+              <button [disabled]="f.form.invalid" type="submit" class="btn btn-success col-sm-4 pull-right">Modifier</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

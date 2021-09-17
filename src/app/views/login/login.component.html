@@ -1,0 +1,81 @@
+<style>
+  main {
+    background-image: url('assets/img/avatars/drapeau.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  }
+  </style>
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+     
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-8">
+              <div class="card-body">
+                <form #formlogin="ngForm">
+                  <div class="alert alert-danger " *ngIf="erreur==1">
+                    <span>
+                        <strong class="text-danger">Le mot de passe est  incorrect </strong>
+                    </span>
+                </div>
+                  <h2 class="text-success">AUHTENTIFICATION</h2>
+                <br>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" 
+                    placeholder="username" 
+                    name="username"
+                    autocomplete="username" 
+                    [(ngModel)]="user.username"
+                    required #username="ngModel" 
+                    [class.is-invalid]="username.invalid && username.touched"
+                    >
+                  </div>
+                  <div *ngIf="username.errors && (username.invalid && username.touched)">
+                    <span class="text-danger" *ngIf="username.errors.required">Veuillez saisir un username</span>
+                  </div>
+                  <br>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" 
+                    placeholder="Password" 
+                    autocomplete="current-password" 
+                    name="password" 
+                    [(ngModel)]="user.password"
+                    required #password="ngModel" 
+                    [class.is-invalid]="password.invalid && password.touched">
+                  </div>
+                  <div>
+                    <span class="text-danger" [class.d-none]="password.valid || password.untouched"> veuillez saisir un mot de passe </span>
+                  </div>                
+                  <div class="row">
+                    <br>
+                    <div class="col-12">
+                      <button type="button" [disabled]="formlogin.form.invalid" (click)="onLoggedin()" class="btn btn-success px-4 col-sm-12">Se Connecter</button>
+                    </div>
+                
+                  </div>
+                </form>
+              </div>
+            </div>
+           <div class="card text-white bg-success py-5 d-md-down-none" style="width:100%">
+              <div class="card-body text-center">
+                <div>
+                  <h1>Salen Mali</h1>
+                  <img class="img-avatar" src="assets/img/avatars/mairie.png" alt="admin@bootstrapmaster.com"> 
+                  <br>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+     
+    </div>
+  </main>
+</div>

@@ -1,0 +1,227 @@
+<div class="col-sm-12" *ngIf="listeMarchandByUtilisateur">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-default">
+                <i class="fa fa-align-justify"></i> Liste des Mairie
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr class="bg-default">
+                            <th>N ° : </th>
+
+                            <!-- <th></th>
+                <th></th> -->
+                        </tr>
+                    </thead>
+                    <tbody
+                        *ngFor="let listeMarchandByutilisateur of listeMarchandByUtilisateur | paginate: { itemsPerPage: 6, currentPage: p } ">
+                        <tr>
+                          <button type="button" (click)="onListePlaceByMarchand(listeMarchandByutilisateur[0])" class="btn btn-secondary btn-lg btn-block">
+                            {{listeMarchandByutilisateur[0]}} ***  
+                                {{listeMarchandByutilisateur[1]}} ***
+                                {{listeMarchandByutilisateur[2]}}
+                          </button><br>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <nav>
+                    <ul class="pagination">
+
+                        <li class="page-item"><a class="page-link">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </a></li>
+
+                    </ul>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<!-- ==============================================================================liste ========================================================================== -->
+<div class="col-sm-12" *ngIf="listePlaceByMarchand">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-default">
+                <i class="fa fa-align-justify"></i> Liste des Mairie
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr class="bg-default">
+                            <th>N ° : </th>
+
+                            <!-- <th></th>
+                <th></th> -->
+                        </tr>
+                    </thead>
+                    <tbody
+                        *ngFor="let listePlaceBymarchand of listePlaceByMarchand | paginate: { itemsPerPage: 6, currentPage: p } ">
+                        <tr>
+                            <div class="btn btn-secondary col-md-12">
+                                <input class="form-check-input" type="checkbox" [value]="listePlaceBymarchand[0]"
+                                    name="{{listePlaceBymarchand[0]}}"
+                                    (change)="getIdPlaceSelectionner($event, listePlaceBymarchand[0])">
+                              
+                                <label class="form-check-label btn btn-info" style="margin-left: 40px;">
+                                    {{listePlaceBymarchand[0]}}
+                                    {{listePlaceBymarchand[1]}}
+                                </label>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <nav>
+                    <ul class="pagination">
+
+                        <li class="page-item"><a class="page-link">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </a></li>
+
+                            <div class="pull-right"  style="margin-left: 14cm;">
+                              <button type="button" class="btn btn-secondary bg-default col-md-12" (click)="onAddPayement()"  data-toggle="modal"
+                              (click)="primaryModal.show()">
+                                Payement
+                              </button>
+                            </div>
+                    </ul>
+       
+
+                </nav>
+            </div>
+        </div>
+    </div>
+
+  
+
+    
+
+</div>
+<div bsModal #primaryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true" >
+<div class="modal-dialog modal-secondary" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Recouvreur</h4>
+      <button type="button" class="close" (click)="primaryModal.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <style>
+                table.greyGridTable {
+          border: 2px solid #FFFFFF;
+          width: 100%;
+          text-align: center;
+          border-collapse: collapse;
+        }
+        table.greyGridTable td, table.greyGridTable th {
+          border: 1px solid #FFFFFF;
+          padding: 3px 4px;
+        }
+        table.greyGridTable tbody td {
+          font-size: 13px;
+        }
+        table.greyGridTable td:nth-child(even) {
+          background: #EBEBEB;
+        }
+        table.greyGridTable thead {
+          background: #f7f7f7;
+          border-bottom: 4px solid #333333;
+        }
+        table.greyGridTable thead th {
+          font-size: 15px;
+          font-weight: bold;
+          color: #333333;
+          text-align: center;
+          border-left: 2px solid #333333;
+        }
+        table.greyGridTable thead th:first-child {
+          border-left: none;
+        }
+        
+        table.greyGridTable tfoot {
+          font-size: 14px;
+          font-weight: bold;
+          color: #333333;
+          border-top: 4px solid #333333;
+        }
+        table.greyGridTable tfoot td {
+          font-size: 14px;
+        }
+            </style>
+        </head>
+        <body style="margin: auto; " *ngIf="facturepayemeny" >
+          <table id="page" style="height: 10px;" *ngFor="let facture of facturepayemeny" >
+            <tbody >
+              <td>
+                <table class="unstyledTable">
+                  <tbody >
+                    <tr>
+                    <td colspan="4" align="center">
+                      Factures
+                    </td>
+                    </tr>
+                  <tr>
+                  <td colspan="3">Date de paiement:</td>
+                  <td>{{facture.datePayement}}</td>
+                  </tr>
+                  <tr>
+                  <td>Recouvreur:</td>
+                  <td colspan="3" align="right">{{facture.utilisateur.nomUtilisateur}} {{facture.utilisateur.prenomUtilisateur}} {{facture.utilisateur.codeUtilisateur}}</td>
+                  </tr>
+                  <tr>
+                  <td>Marchand:</td>
+                  <td align="right" colspan="1">{{facture.marchand.nomMarchand}} {{facture.marchand.prenomMarchand}}</td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  <br><hr><br>
+                  <table class="greyGridTable">
+                      <thead>
+                        <tr>
+                          <th>Places</th>
+                          <th>Montants</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <td>total</td>
+                          <td>{{getTotal()}}</td>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <tr>
+                          <td>{{facture.place.numeroPlace}}</td>
+                          <td>{{facture.montantPayement}}</td>
+                        </tr>
+                      </tbody>
+                    
+                </table>
+              </td>
+            </tbody>
+            <br><br><br><br><br><br>
+            ******************* {{facture.utilisateur.mairie.libelleMairie}} ******************
+          </table>
+          <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+            <button  (click)="imprimer()" class="btn btn-pill btn-block btn-secondary">Imprimer</button>
+          </div>
+        </body>
+        </html>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

@@ -1,0 +1,96 @@
+<div class="col-sm-4" *ngIf="mairiecourant">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        Modifier Mairie
+        </div>
+        <div class="card-body">
+            <form #formmairie="ngForm" (ngSubmit)="OnmodifierMairie(formmairie.value)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-success">Libelle Mairie</span>
+                    </div>
+                    <input type="text" id="username3" 
+                    name="libelleMairie" 
+                    class="form-control"
+                    ngModel
+                    required #libelleMairie="ngModel" 
+                    [class.is-invalid]="libelleMairie.invalid && libelleMairie.touched" [(ngModel)]="mairiecourant.libelleMairie">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="libelleMairie.errors && (libelleMairie.invalid && libelleMairie.touched)">
+                    <span class="text-danger pull-center" *ngIf="libelleMairie.errors.required">Saisir le nom de la mairie</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-success">Quartier</span>
+                    </div>
+                    <input type="text" id="username3" 
+                    name="quartierMairie" 
+                    class="form-control"
+                    ngModel
+                    required #quartierMairie="ngModel" 
+                    [class.is-invalid]="quartierMairie.invalid && quartierMairie.touched" [(ngModel)]="mairiecourant.quartierMairie">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="quartierMairie.errors && (quartierMairie.invalid && quartierMairie.touched)">
+                    <span class="text-danger pull-center" *ngIf="quartierMairie.errors.required">Saisir le nom du Quartier</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Type Mairie</span>
+                    </div>
+                    <select id="disabledSelect" class="form-control" 
+                     name="typeMairie" 
+                     ngModel
+                    required #typeMairie="ngModel" 
+                    [class.is-invalid]="typeMairie.invalid && typeMairie.touched"  [(ngModel)]="mairiecourant.typeMairie">
+                      <option selected="selected">Principale</option>
+                      <option>Secondaire</option>
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="typeMairie.errors && (typeMairie.invalid && typeMairie.touched)">
+                    <span class="text-danger pull-center" *ngIf="typeMairie.errors.required">  Veuillez selectionner !!!</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Commune</span>
+                    </div>
+                    <select id="disabledSelect" class="form-control" 
+                    ngModel name="commune"
+                    required #commune="ngModel" [(ngModel)]="mairiecourant.commune.idCommune">
+                      <option *ngFor="let listecommune of listeCommune" value="{{listecommune.idCommune}}"> {{listecommune.libelleCommune}}</option>
+                      
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="commune.errors && (commune.invalid && commune.touched)">
+                    <span class="text-danger pull-center" *ngIf="commune.errors.required">  Veuillez selectionner !!!</span>
+                  </div>
+                </div>
+                <br><br>
+                <div class="form-group form-actions">
+                  <button type="submit" [disabled]="formmairie.form.invalid" class="btn btn-success col-sm-6 pull-right">Modifier</button>
+                </div>
+                <br><br>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

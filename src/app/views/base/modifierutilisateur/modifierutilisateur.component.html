@@ -1,0 +1,136 @@
+
+
+
+<div class="col-sm-4" *ngIf="utilisateurcourant">
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          Region
+        </div>
+        <div class="card-body">
+        <form #formutilisateur="ngForm" (ngSubmit)="OnmodifierUtilisateur(formutilisateur.value)">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-success">Nom </span>
+                </div>
+                <input type="text" id="username3" 
+                name="nomUtilisateur" 
+                class="form-control"
+                ngModel
+                required #nomUtilisateur="ngModel" 
+                [class.is-invalid]="nomUtilisateur.invalid && nomUtilisateur.touched" [(ngModel)]="utilisateurcourant.nomUtilisateur">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+              </div>
+              <div *ngIf="nomUtilisateur.errors && (nomUtilisateur.invalid && nomUtilisateur.touched)">
+                <span class="text-danger pull-center" *ngIf="nomUtilisateur.errors.required">Saisir le nom </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Prenom </span>
+                </div>
+                <input type="email" id="email3" 
+                name="prenomUtilisateur" class="form-control" 
+                autocomplete="prenomUtilisateur" 
+                class="form-control"
+                ngModel
+                required #prenomUtilisateur="ngModel" 
+                [class.is-invalid]="prenomUtilisateur.invalid && prenomUtilisateur.touched" [(ngModel)]="utilisateurcourant.prenomUtilisateur">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+              </div>
+              <div *ngIf="prenomUtilisateur.errors && (prenomUtilisateur.invalid && prenomUtilisateur.touched)">
+                <span class="text-danger pull-center" *ngIf="prenomUtilisateur.errors.required">Saisir le prenom</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Adresse </span>
+                </div>
+                <input type="text" id="password3" 
+                name="adresseUtilisateur" class="form-control"
+                autocomplete="adresseUtilisateur" 
+                class="form-control"
+                ngModel
+                required #adresseUtilisateur="ngModel" 
+                [class.is-invalid]="adresseUtilisateur.invalid && adresseUtilisateur.touched" [(ngModel)]="utilisateurcourant.adresseUtilisateur">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+              <div *ngIf="adresseUtilisateur.errors && (adresseUtilisateur.invalid && adresseUtilisateur.touched)">
+                <span class="text-danger pull-center" *ngIf="adresseUtilisateur.errors.required">Saisir l'adresse</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Telephone </span>
+                </div>
+                <input type="text" id="password3" 
+                name="telephoneUtilisateur" class="form-control"
+                ngModel
+                required #telephoneUtilisateur="ngModel" 
+                [class.is-invalid]="telephoneUtilisateur.invalid && telephoneUtilisateur.touched" [(ngModel)]="utilisateurcourant.telephoneUtilisateur">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+              <div *ngIf="telephoneUtilisateur.errors && (telephoneUtilisateur.invalid && telephoneUtilisateur.touched)">
+                <span class="text-danger pull-center" *ngIf="telephoneUtilisateur.errors.required">Saisir le numero de telephone </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Email </span>
+                </div>
+                <input type="text" id="password3" 
+                name="emailUtilisateur" class="form-control"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                ngModel
+                required #emailUtilisateur="ngModel" 
+                [class.is-invalid]="emailUtilisateur.invalid && emailUtilisateur.touched" [(ngModel)]="utilisateurcourant.emailUtilisateur">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+              <div *ngIf="emailUtilisateur.errors && (emailUtilisateur.invalid && emailUtilisateur.touched)">
+                <span class="text-danger" *ngIf="emailUtilisateur.errors.required">Veuillez saisir un mail</span>
+                <span class="text-danger" *ngIf="emailUtilisateur.errors.pattern"> Veuillez saisir un mail valide </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Mairie </span>
+                </div>
+                <select id="disabledSelect" class="form-control" 
+                ngModel name="mairie"
+                required #mairie="ngModel" [(ngModel)]="utilisateurcourant.mairie.idMairie">
+                  <option *ngFor="let listemairie of listeMairie" value="{{listemairie.idMairie}}"> {{listemairie.libelleMairie}}</option>
+                  
+                </select>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                </div>
+              </div>
+              <div *ngIf="mairie.errors && (mairie.invalid && mairie.touched)">
+                <span class="text-danger pull-center" *ngIf="mairie.errors.required">Veuillez selectionner une mairie !!!</span>
+              </div>
+            </div>
+            <div class="form-group form-actions">
+              <button type="submit"  [disabled]="formutilisateur.form.invalid" class="btn btn-success col-sm-6 pull-right">Modifier</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

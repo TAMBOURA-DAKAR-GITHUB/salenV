@@ -1,0 +1,195 @@
+<!-- =============================================================marcher=================================================================================== -->
+
+  <div class="card">
+    <div class="btn btn-default">
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedmarcher">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                Marcher
+              </div>
+              <div class="card-body">
+                <form #form1="ngForm" (ngSubmit)="onAddMarcher(form1.value)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text  text-dark bg-default">Libelle Marcher</span>
+                      </div>
+                      <input type="text" id="libelleMarcher" name="libelleMarcher" class="form-control" ngModel required
+                        #libelleMarcher="ngModel" [class.is-invalid]="libelleMarcher.invalid && libelleMarcher.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="libelleMarcher.errors && (libelleMarcher.invalid && libelleMarcher.touched)">
+                      <span class="text-danger pull-center" *ngIf="libelleMarcher.errors.required">Veuillez saisir un
+                        marcher</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Mairie</span>
+                      </div>
+                      <select id="disabledSelect" class="form-control" ngModel name="mairie" required #mairie="ngModel">
+                        <option *ngFor="let mairies of listeMairie" value="{{mairies.idmairie}}"> {{mairies.libelleMairie}}
+                        </option>
+
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="mairie.errors && (mairie.invalid && mairie.touched)">
+                      <span class="text-danger pull-center" *ngIf="mairie.errors.required">Veuillez selectionner
+                        !!!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Longitude</span>
+                      </div>
+                      <input type="password" id="password3" name="password3" class="form-control"
+                        autocomplete="current-password" disabled>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <br><br><br>
+                  <div class="form-group form-actions">
+                    <button [disabled]="form1.form.invalid" type="submit"
+                      class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                  </div>
+                  <br><br><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listeMarcher">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                <i class="fa fa-align-justify"></i>Liste des Cercles
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Libelle Marcher </th>
+                      <th>Libelle mairie</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listemarcher of listeMarcher | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{listemarcher.idMarcher}}</td>
+                      <td>{{listemarcher.libelleMarcher}}</td>
+                      <td>{{listemarcher.mairie.libelleMairie}}</td>
+                      <td>
+                        <a (click)="onUpdateMarcher(listemarcher)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDeleteMarcher(listemarcher)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <ul class="pagination">
+
+                    <li class="page-item"><a class="page-link">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </a></li>
+
+                  </ul>
+
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedmarcher = !isCollapsedmarcher">
+        Gestion Cercle
+      </button>
+    </div>
+  </div>
+
+  <!-- =============================================================marchand=================================================================================== -->
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        Bootstrap Collapse
+        <div class="card-header-actions">
+          <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+            <small className="text-muted">docs</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body"
+           (collapsed)="collapsed($event)"
+           (expanded)="expanded($event)"
+           [collapse]="isCollapsedmarchand">
+        <p>
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+          consequat.
+        </p>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary"
+                (click)="isCollapsedmarchand = !isCollapsedmarchand">Toggle collapse
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <!-- =============================================================place=================================================================================== -->
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        Bootstrap Collapse
+        <div class="card-header-actions">
+          <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+            <small className="text-muted">docs</small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body"
+           (collapsed)="collapsed($event)"
+           (expanded)="expanded($event)"
+           [collapse]="isCollapsedplace">
+        <p>
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+          consequat.
+        </p>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary"
+                (click)="isCollapsedplace = !isCollapsedplace">Toggle collapse
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
