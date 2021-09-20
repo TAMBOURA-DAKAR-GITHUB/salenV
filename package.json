@@ -20,8 +20,8 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc --properties es2015 browser module main --first-only",
-    "start_local": "ng serve",
-    "start": "node server.js",
+    "start_local": "ng serve ,node server.js ",
+    "start": "ng serve",
     "heroku-postbuild": "ng build --aot --prod",
     "build": "ng build --prod --aot --build-optimizer --common-chunk --vendor-chunk --optimization --progress",
     "test": "ng test",

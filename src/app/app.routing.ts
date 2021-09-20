@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
-import { ListeMairieComponent } from './views/base/liste-mairie/liste-mairie.component';
 import { ModifiercercleComponent } from './views/base/modifiercercle/modifiercercle.component';
 import { ModifiercommuneComponent } from './views/base/modifiercommune/modifiercommune.component';
 import { ModifiermairieComponent } from './views/base/modifiermairie/modifiermairie.component';
+import { ModifiermarchandComponent } from './views/base/modifiermarchand/modifiermarchand.component';
+import { ModifiermarcherComponent } from './views/base/modifiermarcher/modifiermarcher.component';
+import { ModifierplaceComponent } from './views/base/modifierplace/modifierplace.component';
 import { ModifierregionComponent } from './views/base/modifierregion/modifierregion.component';
 import { ModifierutilisateurComponent } from './views/base/modifierutilisateur/modifierutilisateur.component';
-import { PayementComponent } from './views/base/payement/payement.component';
+
 
 
 import { P404Component } from './views/error/404.component';
@@ -63,6 +65,18 @@ export const routes: Routes = [
   },
   {
     path:"modifierutilisateur/:id", component:ModifierutilisateurComponent
+
+  },
+  {
+    path:"modifiermarcher/:id", component:ModifiermarcherComponent
+
+  },
+  {
+    path:"modifiermarchand/:id", component:ModifiermarchandComponent
+
+  },
+  {
+    path:"modifierplace/:id", component:ModifierplaceComponent
 
   },
 //   {

@@ -1,113 +1,304 @@
 <!-- =============================================================marcher=================================================================================== -->
 
+<div class="card">
+  <div class="btn btn-default">
+    <div class="card-header-actions">
+      <a href="#" target="_blank">
+        <small className="text-muted">marcher</small>
+      </a>
+    </div>
+  </div>
+  <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedmarcher">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header text-dark bg-default">
+              Marcher
+            </div>
+            <div class="card-body">
+              <form #form1="ngForm" (ngSubmit)="onAddMarcher(form1.value)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text  text-dark bg-default">Libelle Marcher</span>
+                    </div>
+                    <input type="text" id="libelleMarcher" name="libelleMarcher" class="form-control" ngModel required
+                      #libelleMarcher="ngModel" [class.is-invalid]="libelleMarcher.invalid && libelleMarcher.touched">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="libelleMarcher.errors && (libelleMarcher.invalid && libelleMarcher.touched)">
+                    <span class="text-danger pull-center" *ngIf="libelleMarcher.errors.required">Veuillez saisir un
+                      marcher</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Mairie </span>
+                    </div>
+                    <select id="disabledSelect" class="form-control" ngModel name="mairie" required #mairie="ngModel">
+                      <option *ngFor="let mairie of listeMairie" value="{{mairie.idMairie}}"> {{mairie.libelleMairie}}
+                        {{mairie.quartierMairie}}
+                      </option>
+
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="mairie.errors && (mairie.invalid && mairie.touched)">
+                    <span class="text-danger pull-center" *ngIf="mairie.errors.required">Veuillez selectionner
+                      !!!</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Longitude</span>
+                    </div>
+                    <input type="password" id="password3" name="password3" class="form-control"
+                      autocomplete="current-password" disabled>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <br><br><br>
+                <div class="form-group form-actions">
+                  <button [disabled]="form1.form.invalid" type="submit"
+                    class="btn btn-secondary text-dark bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                </div>
+                <br><br><br>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8" *ngIf="listeMarcher">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header text-dark bg-default">
+              <i class="fa fa-align-justify"></i>Liste des Cercles
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered table-striped table-sm">
+                <thead>
+                  <tr class="text-dark bg-default">
+                    <th>N ° : </th>
+                    <th>Libelle Marcher </th>
+                    <th>Libelle Mairie</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let listemarcher of listeMarcher | paginate: { itemsPerPage: 6, currentPage: p } ">
+                  <tr>
+                    <td>{{listemarcher.idMarcher}}</td>
+                    <td>{{listemarcher.libelleMarcher}}</td>
+                    <td>{{listemarcher.mairie.libelleMairie}}</td>
+                    <td>
+                      <a (click)="onUpdateMarcher(listemarcher)">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a (click)="onDeleteMarcher(listemarcher)">
+                        <i class="fa fa-trash-o fa-lg"></i>
+                      </a>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <nav>
+                <ul class="pagination">
+
+                  <li class="page-item"><a class="page-link">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </a></li>
+
+                </ul>
+
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default"
+      (click)="isCollapsedmarcher = !isCollapsedmarcher">
+      Gestion marcher
+    </button>
+  </div>
+</div>
+
+<!-- =============================================================marchand=================================================================================== -->
+<div class="animated fadeIn">
   <div class="card">
-    <div class="btn btn-default">
+    <div class="card-header">
+
       <div class="card-header-actions">
-        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
-          <small className="text-muted">docs</small>
+        <a href="#" target="_blank">
+          <small className="text-muted">marchand</small>
         </a>
       </div>
     </div>
-    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedmarcher">
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)"
+      [collapse]="isCollapsedmarchand">
       <div class="row">
         <div class="col-sm-4">
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header text-dark bg-default">
-                Marcher
+                Marchand
               </div>
               <div class="card-body">
-                <form #form1="ngForm" (ngSubmit)="onAddMarcher(form1.value)">
+                <form #formmarchand="ngForm" (ngSubmit)="onAddMarchand(formmarchand.value)">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text  text-dark bg-default">Libelle Marcher</span>
+                        <span class="input-group-text  text-dark bg-default">Nom </span>
                       </div>
-                      <input type="text" id="libelleMarcher" name="libelleMarcher" class="form-control" ngModel required
-                        #libelleMarcher="ngModel" [class.is-invalid]="libelleMarcher.invalid && libelleMarcher.touched">
+                      <input type="text" id="username3" name="nomMarchand" class="form-control" ngModel required
+                        #nomMarchand="ngModel" [class.is-invalid]="nomMarchand.invalid && nomMarchand.touched">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
                     </div>
-                    <div *ngIf="libelleMarcher.errors && (libelleMarcher.invalid && libelleMarcher.touched)">
-                      <span class="text-danger pull-center" *ngIf="libelleMarcher.errors.required">Veuillez saisir un
-                        marcher</span>
+                    <div *ngIf="nomMarchand.errors && (nomMarchand.invalid && nomMarchand.touched)">
+                      <span class="text-danger pull-center" *ngIf="nomMarchand.errors.required">Saisir le nom </span>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text text-dark bg-default">Mairie</span>
+                        <span class="input-group-text text-dark bg-default">Prenom </span>
                       </div>
-                      <select id="disabledSelect" class="form-control" ngModel name="mairie" required #mairie="ngModel">
-                        <option *ngFor="let mairies of listeMairie" value="{{mairies.idmairie}}"> {{mairies.libelleMairie}}
-                        </option>
-
-                      </select>
+                      <input type="email" id="email3" name="prenomMarchand" class="form-control"
+                        autocomplete="prenomMarchand" class="form-control" ngModel required #prenomMarchand="ngModel"
+                        [class.is-invalid]="prenomMarchand.invalid && prenomMarchand.touched">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                       </div>
                     </div>
-                    <div *ngIf="mairie.errors && (mairie.invalid && mairie.touched)">
-                      <span class="text-danger pull-center" *ngIf="mairie.errors.required">Veuillez selectionner
-                        !!!</span>
+                    <div *ngIf="prenomMarchand.errors && (prenomMarchand.invalid && prenomMarchand.touched)">
+                      <span class="text-danger pull-center" *ngIf="prenomMarchand.errors.required">Saisir le
+                        prenom</span>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text text-dark bg-default">Longitude</span>
+                        <span class="input-group-text text-dark bg-default">Téléphone </span>
                       </div>
-                      <input type="password" id="password3" name="password3" class="form-control"
-                        autocomplete="current-password" disabled>
+                      <input type="number" id="password3" name="telephoneMarchand" class="form-control"
+                        autocomplete="telephoneMarchand" class="form-control" ngModel required
+                        #telephoneMarchand="ngModel"
+                        [class.is-invalid]="telephoneMarchand.invalid && telephoneMarchand.touched">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                       </div>
                     </div>
+                    <div *ngIf="telephoneMarchand.errors && (telephoneMarchand.invalid && telephoneMarchand.touched)">
+                      <span class="text-danger pull-center" *ngIf="telephoneMarchand.errors.required">Saisir
+                        l'adresse</span>
+                    </div>
                   </div>
-                  <br><br><br>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Date Occupation </span>
+                      </div>
+                      <input type="date" id="password3" name="dateOccupationMarchand" class="form-control" ngModel
+                        required #dateOccupationMarchand="ngModel"
+                        [class.is-invalid]="dateOccupationMarchand.invalid && dateOccupationMarchand.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="dateOccupationMarchand.errors && (dateOccupationMarchand.invalid && dateOccupationMarchand.touched)">
+                      <span class="text-danger pull-center" *ngIf="dateOccupationMarchand.errors.required">Saisir le
+                        numero
+                        de telephone </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Marcher </span>
+                      </div>
+                      <select id="disabledSelect" class="form-control" ngModel name="marcher" required
+                        #marcher="ngModel">
+                        <option *ngFor="let listemarcher of listeMarcher" value="{{listemarcher.idMarcher}}">
+                          {{listemarcher.libelleMarcher}}</option>
+
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="marcher.errors && (marcher.invalid && marcher.touched)">
+                      <span class="text-danger pull-center" *ngIf="marcher.errors.required">Veuillez selectionner une
+                        marcher !!!</span>
+                    </div>
+                  </div>
                   <div class="form-group form-actions">
-                    <button [disabled]="form1.form.invalid" type="submit"
-                      class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                    <button type="submit" [disabled]="formmarchand.form.invalid"
+                      class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right">
+                      <strong><strong>Enregistrer</strong></strong> </button>
                   </div>
-                  <br><br><br>
                 </form>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-8" *ngIf="listeMarcher">
+        <div class="col-sm-8" *ngIf="listeMarchand">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header text-dark bg-default">
-                <i class="fa fa-align-justify"></i>Liste des Cercles
+                <i class="fa fa-align-justify"></i>Liste des marchands
               </div>
               <div class="card-body">
                 <table class="table table-bordered table-striped table-sm">
                   <thead>
                     <tr class="text-dark bg-default">
                       <th>N ° : </th>
-                      <th>Libelle Marcher </th>
-                      <th>Libelle mairie</th>
+                      <th>Nom </th>
+                      <th>Prenom </th>
+                      <th>Date Occupation </th>
+                      <th>Telephone </th>
+
+                      <th>Mairie </th>
                       <th></th>
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let listemarcher of listeMarcher | paginate: { itemsPerPage: 6, currentPage: p } ">
+                  <tbody *ngFor="let listemarchand of listeMarchand | paginate: { itemsPerPage: 6, currentPage: p } ">
                     <tr>
-                      <td>{{listemarcher.idMarcher}}</td>
-                      <td>{{listemarcher.libelleMarcher}}</td>
-                      <td>{{listemarcher.mairie.libelleMairie}}</td>
+                      <td>{{listemarchand.idMarchand}}</td>
+                      <td>{{listemarchand.nomMarchand}}</td>
+                      <td>{{listemarchand.prenomMarchand}}</td>
+                      <td>{{listemarchand.dateOccupationMarchand}}</td>
+                      <td>{{listemarchand.telephoneMarchand}}</td>
+                      <td>{{listemarchand.marcher.libellemarcher}}</td>
                       <td>
-                        <a (click)="onUpdateMarcher(listemarcher)">
+                        <a (click)="onUpdateMarchand(listemarchand)">
                           <i class="fa fa-edit"></i>
                         </a>
                       </td>
                       <td>
-                        <a (click)="onDeleteMarcher(listemarcher)">
+                        <a (click)="onDeleteMarchand(listemarchand)">
                           <i class="fa fa-trash-o fa-lg"></i>
                         </a>
                       </td>
+
                     </tr>
                   </tbody>
                 </table>
@@ -129,67 +320,152 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedmarcher = !isCollapsedmarcher">
-        Gestion Cercle
+      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default"
+        (click)="isCollapsedmarchand = !isCollapsedmarchand">
+        Gestion marchand
       </button>
     </div>
   </div>
+</div>
 
-  <!-- =============================================================marchand=================================================================================== -->
+<!-- =============================================================place=================================================================================== -->
 <div class="animated fadeIn">
-    <div class="card">
-      <div class="card-header">
-        Bootstrap Collapse
-        <div class="card-header-actions">
-          <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
-            <small className="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body"
-           (collapsed)="collapsed($event)"
-           (expanded)="expanded($event)"
-           [collapse]="isCollapsedmarchand">
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-          consequat.
-        </p>
-      </div>
-      <div class="card-footer">
-        <button type="button" class="btn btn-primary"
-                (click)="isCollapsedmarchand = !isCollapsedmarchand">Toggle collapse
-        </button>
+  <div class="card">
+    <div class="card-header">
+
+      <div class="card-header-actions">
+        <a href="#" target="_blank">
+          <small className="text-muted">place</small>
+        </a>
       </div>
     </div>
-  </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedplace">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                Place
+              </div>
+              <div class="card-body">
+                <form #formplace="ngForm" (ngSubmit)="onAddPlace(formplace.value)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text  text-dark bg-default">Libelle Place</span>
+                      </div>
+                      <input type="text" id="libelleMarcher" name="numeroPlace" class="form-control" ngModel required
+                        #numeroPlace="ngModel" [class.is-invalid]="numeroPlace.invalid && numeroPlace.touched">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="numeroPlace.errors && (numeroPlace.invalid && numeroPlace.touched)">
+                      <span class="text-danger pull-center" *ngIf="numeroPlace.errors.required">Veuillez saisir une
+                        place</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Marcher </span>
+                      </div>
+                      <select id="disabledSelect" class="form-control" ngModel name="marcher" required
+                        #marchers="ngModel">
+                        <option *ngFor="let listemarcher of listeMarcher" value="{{listemarcher.idMarcher}}">
+                          {{listemarcher.libelleMarcher}}</option>
 
-    <!-- =============================================================place=================================================================================== -->
-<div class="animated fadeIn">
-    <div class="card">
-      <div class="card-header">
-        Bootstrap Collapse
-        <div class="card-header-actions">
-          <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
-            <small className="text-muted">docs</small>
-          </a>
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                    <div *ngIf="marchers.errors && (marchers.invalid && marchers.touched)">
+                      <span class="text-danger pull-center" *ngIf="marchers.errors.required">Veuillez selectionner une
+                        marcher !!!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text text-dark bg-default">Longitude</span>
+                      </div>
+                      <input type="password" id="password3" name="password3" class="form-control"
+                        autocomplete="current-password" disabled>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <br><br><br>
+                  <div class="form-group form-actions">
+                    <button [disabled]="formplace.form.invalid" type="submit"
+                      class="btn btn-secondary text-dark bg-default col-sm-6 pull-right"><strong><strong>Enregistrer</strong></strong></button>
+                  </div>
+                  <br><br><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" *ngIf="listePlace">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header text-dark bg-default">
+                <i class="fa fa-align-justify"></i>Liste des Places
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr class="text-dark bg-default">
+                      <th>N ° : </th>
+                      <th>Libelle Place </th>
+                      <th>Libelle Marcher</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let listeplace of listePlace | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr>
+                      <td>{{listeplace.idPlace}}</td>
+                      <td>{{listeplace.numeroPlace}}</td>
+                      <td>{{listeplace.marcher.libelleMarcher}}</td>
+                      <td>
+                        <a (click)="onUpdatePlace(listeplace)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a (click)="onDeletePlace(listeplace)">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                <nav>
+                  <ul class="pagination">
+
+                    <li class="page-item"><a class="page-link">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </a></li>
+
+                  </ul>
+
+                </nav>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card-body"
-           (collapsed)="collapsed($event)"
-           (expanded)="expanded($event)"
-           [collapse]="isCollapsedplace">
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-          consequat.
-        </p>
-      </div>
-      <div class="card-footer">
-        <button type="button" class="btn btn-primary"
-                (click)="isCollapsedplace = !isCollapsedplace">Toggle collapse
-        </button>
-      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary btn btn-pill btn-block col-sm-2 bg-default"
+        (click)="isCollapsedplace = !isCollapsedplace">
+        Gestion place
+      </button>
     </div>
   </div>
-  
-  
-  
+</div>

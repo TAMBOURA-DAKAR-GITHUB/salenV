@@ -1,0 +1,66 @@
+<div class="col-sm-4" *ngIf="placecourant">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        Modifier Place
+        </div>
+        <div class="card-body">
+            <form #formplace="ngForm" (ngSubmit)="OnmodifierPlace(formplace.value)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text  text-dark bg-default">Libelle Place</span>
+                    </div>
+                    <input type="text" id="libelleMarcher" name="numeroPlace" class="form-control" ngModel required
+                      #numeroPlace="ngModel" [class.is-invalid]="numeroPlace.invalid && numeroPlace.touched" [(ngModel)]="placecourant.numeroPlace">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="numeroPlace.errors && (numeroPlace.invalid && numeroPlace.touched)">
+                    <span class="text-danger pull-center" *ngIf="numeroPlace.errors.required">Veuillez saisir une
+                      place</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Marcher </span>
+                    </div>
+                    <select id="disabledSelect" class="form-control" ngModel name="marcher" required #marchers="ngModel" [(ngModel)]="placecourant.marcher.idMarcher">
+                      <option *ngFor="let listemarcher of listeMarcher" value="{{listemarcher.idMarcher}}">
+                        {{listemarcher.libelleMarcher}}</option>
+
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="marchers.errors && (marchers.invalid && marchers.touched)">
+                    <span class="text-danger pull-center" *ngIf="marchers.errors.required">Veuillez selectionner une
+                      marcher !!!</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Longitude</span>
+                    </div>
+                    <input type="password" id="password3" name="password3" class="form-control"
+                      autocomplete="current-password" disabled>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <br><br><br>
+                <div class="form-group form-actions">
+                  <button [disabled]="formplace.form.invalid" type="submit"
+                    class="btn btn-secondary text-dark bg-default col-sm-6 pull-right"><strong><strong>Modifier</strong></strong></button>
+                </div>
+                <br><br><br>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

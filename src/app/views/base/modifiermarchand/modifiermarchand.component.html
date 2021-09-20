@@ -1,0 +1,105 @@
+<div class="col-sm-4" *ngIf="marchandcourant">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        Modifier Marchand
+        </div>
+        <div class="card-body">
+            <form #formmarchand="ngForm" (ngSubmit)="OnmodifierMarchand(formmarchand.value)">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text  text-dark bg-default">Nom </span>
+                    </div>
+                    <input type="text" id="username3" name="nomMarchand" class="form-control" ngModel required
+                      #nomMarchand="ngModel" [class.is-invalid]="nomMarchand.invalid && nomMarchand.touched" [(ngModel)]="marchandcourant.nomMarchand">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="nomMarchand.errors && (nomMarchand.invalid && nomMarchand.touched)">
+                    <span class="text-danger pull-center" *ngIf="nomMarchand.errors.required">Saisir le nom </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Prenom </span>
+                    </div>
+                    <input type="email" id="email3" name="prenomMarchand" class="form-control"
+                      autocomplete="prenomMarchand" class="form-control" ngModel required
+                      #prenomMarchand="ngModel"
+                      [class.is-invalid]="prenomMarchand.invalid && prenomMarchand.touched" [(ngModel)]="marchandcourant.prenomMarchand">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="prenomMarchand.errors && (prenomMarchand.invalid && prenomMarchand.touched)">
+                    <span class="text-danger pull-center" *ngIf="prenomMarchand.errors.required">Saisir le
+                      prenom</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Téléphone </span>
+                    </div>
+                    <input type="number" id="password3" name="telephoneMarchand" class="form-control"
+                      autocomplete="telephoneMarchand" class="form-control" ngModel required
+                      #telephoneMarchand="ngModel"
+                      [class.is-invalid]="telephoneMarchand.invalid && telephoneMarchand.touched" [(ngModel)]="marchandcourant.telephoneMarchand">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="telephoneMarchand.errors && (telephoneMarchand.invalid && telephoneMarchand.touched)">
+                    <span class="text-danger pull-center" *ngIf="telephoneMarchand.errors.required">Saisir
+                      l'adresse</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Date Occupation </span>
+                    </div>
+                    <input type="date" id="password3" name="dateOccupationMarchand" class="form-control" ngModel
+                      required #dateOccupationMarchand="ngModel"
+                      [class.is-invalid]="dateOccupationMarchand.invalid && dateOccupationMarchand.touched" [(ngModel)]="marchandcourant.dateOccupationMarchand">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="dateOccupationMarchand.errors && (dateOccupationMarchand.invalid && dateOccupationMarchand.touched)">
+                    <span class="text-danger pull-center" *ngIf="dateOccupationMarchand.errors.required">Saisir la date 
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text text-dark bg-default">Marcher </span>
+                    </div>
+                    <select id="disabledSelect" class="form-control" ngModel name="marcher" required #marcher="ngModel" [(ngModel)]="marchandcourant.marcher.idMarcher">
+                      <option *ngFor="let listemarcher of listeMarcher" value="{{listemarcher.idMarcher}}">
+                        {{listemarcher.libelleMarcher}}</option>
+
+                    </select>
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="marcher.errors && (marcher.invalid && marcher.touched)">
+                    <span class="text-danger pull-center" *ngIf="marcher.errors.required">Veuillez selectionner un
+                      marcher !!!</span>
+                  </div>
+                </div>
+                <div class="form-group form-actions">
+                  <button type="submit" [disabled]="formmarchand.form.invalid"
+                    class="btn btn-secondary c text-dark bg-default col-sm-6 pull-right"> <strong><strong>Enregistrer</strong></strong> </button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

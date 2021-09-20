@@ -60,6 +60,9 @@ import { ModifiermairieComponent } from './modifiermairie/modifiermairie.compone
 import { ModifierutilisateurComponent } from './modifierutilisateur/modifierutilisateur.component';
 import { PayementComponent } from './payement/payement.component';
 import { MarcherComponent } from './marcher/marcher.component';
+import { ModifiermarcherComponent } from './modifiermarcher/modifiermarcher.component';
+import { ModifiermarchandComponent } from './modifiermarchand/modifiermarchand.component';
+import { ModifierplaceComponent } from './modifierplace/modifierplace.component';
 
 
 @NgModule({
@@ -83,6 +86,9 @@ import { MarcherComponent } from './marcher/marcher.component';
     ModifierutilisateurComponent,
     PayementComponent,
     MarcherComponent,
+    ModifiermarcherComponent,
+    ModifiermarchandComponent,
+    ModifierplaceComponent,
 
   
   ],

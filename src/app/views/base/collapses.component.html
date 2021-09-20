@@ -11,7 +11,7 @@
     </div>
     <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsedregion">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-5">
 
           <div class="col-sm-12">
             <div class="card">
@@ -63,17 +63,19 @@
                     </div>
                   </div>
                   <br><br><br>
+                  <small>
                   <div class="form-group form-actions">
                     <button [disabled]="f.form.invalid" type="submit"
                       class="btn btn-secondary c text-dark bg-default col-sm-4 pull-right"><strong><strong>Enregistrer</strong></strong></button>
                   </div>
+                </small>
                   <br><br><br>
                 </form>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-8" *ngIf="listeRegion">
+        <div class="col-sm-7" *ngIf="listeRegion">
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header text-dark bg-default">
@@ -128,6 +130,7 @@
         </div>
       </div>
     </div>
+
     <div class="card-footer">
       <button type="button" class="btn btn-secondary  btn btn-pill btn-block col-sm-2 bg-default" (click)="isCollapsedregion = !isCollapsedregion">
         Gestion Region
@@ -714,31 +717,34 @@
                 <i class="fa fa-align-justify"></i> Liste des Recouvreurs
               </div>
               <div class="card-body">
+                <small>
                 <table class="table table-bordered table-striped table-sm">
                   <thead>
                     <tr class="text-dark bg-default">
-                      <th>N ° : </th>
+                      
                       <th>Nom </th>
                       <th>Prenom </th>
                       <th>Adresse </th>
+                      <th>Code  </th>
                       <th>Telephone </th>
                       <th>E-mail </th>
                       <th>Mairie </th>
-                      <th>Commune </th>
+                      <!-- <th>Commune </th> -->
                       <th></th>
                       <th></th>
                     </tr>
                   </thead>
+                  
                   <tbody *ngFor="let utilisateur of listeUtilisateur | paginate: { itemsPerPage: 6, currentPage: p } ">
                     <tr>
                       <td>{{utilisateur.nomUtilisateur}}</td>
                       <td>{{utilisateur.prenomUtilisateur}}</td>
                       <td>{{utilisateur.adresseUtilisateur}}</td>
                       <td>{{utilisateur.codeUtilisateur}}</td>
-                      <td>{{utilisateur.telephoneUtilisateur}}</td>
+                   <td>{{utilisateur.telephoneUtilisateur}}</td>
                       <td>{{utilisateur.emailUtilisateur}}</td>
                       <td>{{utilisateur.mairie.libelleMairie}}</td>
-                      <td>{{utilisateur.mairie.commune.libelleCommune}}</td>
+                      <!-- <td>{{utilisateur.mairie.commune.libelleCommune}}</td> -->
                       <td>
                         <a (click)="onUpdateUtilisateur(utilisateur)">
                           <i class="fa fa-edit"></i>
@@ -752,7 +758,9 @@
                     </tr>
 
                   </tbody>
+                
                 </table>
+              </small>
                 <br>
                 <nav>
                   <ul class="pagination">
