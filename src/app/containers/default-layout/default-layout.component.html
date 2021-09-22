@@ -1,20 +1,20 @@
 <app-header
   [navbarBrandRouterLink]="['/dashboard']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/avatars/mairie.png', width: 89, height: 50, alt: 'logo mairie'}"
+  [navbarBrandMinimized]="{src: 'assets/img/avatars/mairie.png', width: 30, height: 30, alt: 'logo mairie'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">Dashboard</a>
+      <a class="nav-link" href="#">accueil</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">Users</a>
+      <a class="nav-link" href="#">Paramètres</a>
+    </li>    <li class="nav-item px-3">
+      <strong class="text-white bg-dark"><a class="nav-link" href="#">{{connexion.loggedUser}}</a></strong>
     </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Settings</a>
-    </li>
+
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <!-- <li class="nav-item d-md-down-none">
@@ -28,23 +28,22 @@
     </li> -->
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-        <span class="text-success">{{connexion.loggedUser}}</span>
+        <span class="text-success"></span>
         <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
       </a>
     
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <div class="dropdown-header text-center"><strong>Account</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
+        <!-- <div class="dropdown-header text-center"><strong>Account</strong></div> -->
+        <!-- <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
-        <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a> -->
+
         <div class="dropdown-header text-center"><strong>Settings</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
-        <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+
+        <a class="dropdown-item" (click)="onUpdateUtilisateur(utilisateur)"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" (click)="onPayement()"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
         <div class="divider"></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
         <a class="dropdown-item"  (click) = "onLogout()"><i class="fa fa-lock"></i> Se Deconnecter</a>
       </div>
     </li>
@@ -338,6 +337,12 @@
   </app-aside>
 </div>
 <app-footer>
-  <span><a href="https://coreui.io">CoreUI</a> &copy; 2021 creativeLabs.</span>
-  <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span>
+  <span><a href="https://wa.me/00221782918739">Salen</a> &copy; 2021 TamDev.</span>
+  <span class="ml-auto"> <a href="https://wa.me/00221782918739"> 
+    <div class="row" style="margin-right: 2cm;">
+      <i class="icon-phone icons font-2xl d-block mt-6"> </i> &nbsp;&nbsp;
+      <h5> appeler</h5>
+    </div>
+    
+  </a></span>
 </app-footer>

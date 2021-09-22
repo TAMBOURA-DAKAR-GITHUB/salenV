@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { ConnexionService } from '../../../security/service/connexion.service';
 import { PayementService } from '../service/payement.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { MairieserviceService } from '../service/mairieservice.service';
-import autoTable from 'jspdf-autotable'
 
 @Component({
   selector: 'app-payement',
