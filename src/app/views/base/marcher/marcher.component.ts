@@ -13,6 +13,8 @@ import { PlaceService } from '../service/place.service';
 })
 export class MarcherComponent implements OnInit {
 
+  
+
   isCollapsedmarcher: boolean = true;
   isCollapsedmarchand: boolean = true;
   isCollapsedplace: boolean = true;
@@ -34,6 +36,7 @@ export class MarcherComponent implements OnInit {
              private marchandservice: MarchandService , private placeservice: PlaceService) { }
 
   ngOnInit(): void {
+
      // ***************liste marcher ********
      this.marcherservice.getMarcher()
      .subscribe(data =>{

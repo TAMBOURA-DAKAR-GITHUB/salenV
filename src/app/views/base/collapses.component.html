@@ -22,11 +22,11 @@
                 <form #f="ngForm" (ngSubmit)="onAddRegion(f.value)">
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text text-dark bg-default">Libelle Region</span>
-                      </div>
+                      </div> -->
                       <input type="text" id="username3" name="libelleRegion" class="form-control" ngModel required
-                        #libelleRegion="ngModel" [class.is-invalid]="libelleRegion.invalid && libelleRegion.touched">
+                        #libelleRegion="ngModel" [class.is-invalid]="libelleRegion.invalid && libelleRegion.touched" placeholder="Libelle Region">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
@@ -159,11 +159,11 @@
                 <form #form1="ngForm" (ngSubmit)="onAddCercle(form1.value)">
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-prepend">
+                       <div class="input-group-prepend">
                         <span class="input-group-text  text-dark bg-default">Libelle Cercle</span>
-                      </div>
+                      </div> 
                       <input type="text" id="username3" name="libelleCercle" class="form-control" ngModel required
-                        #libelleCercle="ngModel" [class.is-invalid]="libelleCercle.invalid && libelleCercle.touched">
+                        #libelleCercle="ngModel" [class.is-invalid]="libelleCercle.invalid && libelleCercle.touched" >
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
@@ -175,10 +175,10 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text text-dark bg-default">Region</span>
-                      </div>
-                      <select id="disabledSelect" class="form-control" ngModel name="region" required #region="ngModel">
+                      </div> -->
+                      <select id="disabledSelect" class="form-control" ngModel name="region" required #region="ngModel" placeholder="Region">
                         <option *ngFor="let region of listeRegion" value="{{region.idRegion}}"> {{region.libelleRegion}}
                         </option>
 
@@ -296,11 +296,11 @@
                 <form #formcommune="ngForm" (ngSubmit)="onAddCommune(formcommune.value)">
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text  text-dark bg-default">Libelle Commune</span>
-                      </div>
+                      </div> -->
                       <input type="text" id="username3" name="libelleCommune" class="form-control" ngModel required
-                        #libelleCommune="ngModel" [class.is-invalid]="libelleCommune.invalid && libelleCommune.touched">
+                        #libelleCommune="ngModel" [class.is-invalid]="libelleCommune.invalid && libelleCommune.touched" placeholder="Libelle Commune">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
@@ -432,11 +432,11 @@
                 <form #formmairie="ngForm" (ngSubmit)="onAddMairie(formmairie.value)">
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text  text-dark bg-default">Libelle Mairie</span>
-                      </div>
+                      </div> -->
                       <input type="text" id="username3" name="libelleMairie" class="form-control" ngModel required
-                        #libelleMairie="ngModel" [class.is-invalid]="libelleMairie.invalid && libelleMairie.touched">
+                        #libelleMairie="ngModel" [class.is-invalid]="libelleMairie.invalid && libelleMairie.touched" placeholder="Libelle Mairie">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
@@ -448,11 +448,11 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text  text-dark bg-default">Quartier</span>
-                      </div>
+                      </div> -->
                       <input type="text" id="username3" name="quartierMairie" class="form-control" ngModel required
-                        #quartierMairie="ngModel" [class.is-invalid]="quartierMairie.invalid && quartierMairie.touched">
+                        #quartierMairie="ngModel" [class.is-invalid]="quartierMairie.invalid && quartierMairie.touched" placeholder="Quartier">
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
@@ -597,11 +597,11 @@
               <form #formutilisateur="ngForm" (ngSubmit)="onAddUtilisateur(formutilisateur.value)">
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend">
+                    <!-- <div class="input-group-prepend">
                       <span class="input-group-text  text-dark bg-default">Nom </span>
-                    </div>
+                    </div> -->
                     <input type="text" id="username3" name="nomUtilisateur" class="form-control" ngModel required
-                      #nomUtilisateur="ngModel" [class.is-invalid]="nomUtilisateur.invalid && nomUtilisateur.touched">
+                      #nomUtilisateur="ngModel" [class.is-invalid]="nomUtilisateur.invalid && nomUtilisateur.touched" placeholder="Nom ">
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="fa fa-user"></i></span>
                     </div>
@@ -612,13 +612,13 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend">
+                    <!-- <div class="input-group-prepend">
                       <span class="input-group-text text-dark bg-default">Prenom </span>
-                    </div>
+                    </div> -->
                     <input type="email" id="email3" name="prenomUtilisateur" class="form-control"
                       autocomplete="prenomUtilisateur" class="form-control" ngModel required
                       #prenomUtilisateur="ngModel"
-                      [class.is-invalid]="prenomUtilisateur.invalid && prenomUtilisateur.touched">
+                      [class.is-invalid]="prenomUtilisateur.invalid && prenomUtilisateur.touched" placeholder="Prénom ">
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     </div>
@@ -630,13 +630,13 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend">
+                    <!-- <div class="input-group-prepend">
                       <span class="input-group-text text-dark bg-default">Adresse </span>
-                    </div>
+                    </div> -->
                     <input type="text" id="password3" name="adresseUtilisateur" class="form-control"
                       autocomplete="adresseUtilisateur" class="form-control" ngModel required
                       #adresseUtilisateur="ngModel"
-                      [class.is-invalid]="adresseUtilisateur.invalid && adresseUtilisateur.touched">
+                      [class.is-invalid]="adresseUtilisateur.invalid && adresseUtilisateur.touched" placeholder="Adresse">
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                     </div>
@@ -648,12 +648,12 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend">
+                    <!-- <div class="input-group-prepend">
                       <span class="input-group-text text-dark bg-default">Telephone </span>
-                    </div>
+                    </div> -->
                     <input type="number" id="password3" name="telephoneUtilisateur" class="form-control" ngModel
                       required #telephoneUtilisateur="ngModel"
-                      [class.is-invalid]="telephoneUtilisateur.invalid && telephoneUtilisateur.touched">
+                      [class.is-invalid]="telephoneUtilisateur.invalid && telephoneUtilisateur.touched" placeholder="téléphone ">
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                     </div>
@@ -666,13 +666,13 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-prepend">
+                    <!-- <div class="input-group-prepend">
                       <span class="input-group-text text-dark bg-default">Email </span>
-                    </div>
+                    </div> -->
                     <input type="text" id="password3" name="emailUtilisateur" class="form-control"
                       pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ngModel required
                       #emailUtilisateur="ngModel"
-                      [class.is-invalid]="emailUtilisateur.invalid && emailUtilisateur.touched">
+                      [class.is-invalid]="emailUtilisateur.invalid && emailUtilisateur.touched" placeholder="e-mail">
                     <div class="input-group-append">
                       <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                     </div>
